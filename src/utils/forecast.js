@@ -1,10 +1,10 @@
 const request = require('request');
 const forecast = (data, callback) => {
     const url =
-        "https://api.darksky.net/forecast/eea2d956e0315c650d7d81e3ac71a5c0/" + data.lat + "," + data.lang ;
+        "https://api.darksky.net/forecast/eea2d956e0315c650d7d81e3ac71a5c0/" + data.lat + "," + data.lang;
 
     request({
-          url,
+            url,
             json: true
         },
         (error, response, body) => {
@@ -20,7 +20,7 @@ const forecast = (data, callback) => {
                 //     `It is currently ${temp} degrees out. There is a ${percip}% chance of rain.`
                 // );
                 callback(undefined,
-                    `It is currently ${temp} degrees out. There is a ${percip}% chance of rain.`);
+                    `${body.daily.data[0].summary} It is currently ${temp} degrees out. The high today is ${body.daily.data[0].temperatureHigh} with a low of ${body.daily.data[0].temperatureLow}. There is a ${percip}% chance of rain.`);
             }
         }
     );
